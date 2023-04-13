@@ -28,20 +28,40 @@ const CartScreen = () => {
   );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      {/* <View style={styles.header}>
+        // <Text style={styles.title}>Shopping Cart</Text>
+        //{' '}
+      </View> */}
       <FlatList
         data={cart}
         renderItem={renderItem}
         ListFooterComponent={renderFooter}
+        showsVerticalScrollIndicator={false}
       />
       <TouchableOpacity style={styles.checkoutBtn}>
-        <Text style={styles.checkoutText}>Checkout</Text>
+        <Text style={styles.checkoutText}>Proceed to Checkout</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    backgroundColor: 'white',
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
   footerList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -49,9 +69,8 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderColor: '#c9c4c4',
     marginHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 10,
   },
-
   footerTextContainer: {
     alignItems: 'flex-end',
   },
@@ -71,9 +90,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 20,
     marginVertical: 30,
-    borderRadius: 100,
+    borderRadius: 30,
     padding: 20,
-    backgroundColor: 'black',
+    backgroundColor: '#000',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 5,
   },
   checkoutText: {
     color: 'white',

@@ -1,16 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
-// import ProductScreen from './src/screens/ProductScreen';
-import ProductDetailsScreen from './src/screens/ProductDetailsScreen';
-import CartScreen from './src/screens/CartScreen';
+import React from 'react';
+import { StatusBar, View } from 'react-native';
+import Navigation from './src/navigation/Navigation';
 
 export default function App() {
   return (
-    <View>
-      {/* <ProductScreen /> */}
-      {/* <ProductDetailsScreen /> */}
-      <CartScreen />
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <Navigation />
+      <StatusBar />
     </View>
   );
 }

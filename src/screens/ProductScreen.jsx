@@ -1,9 +1,9 @@
 import React from 'react';
-import { FlatList } from 'react-native';
-import { Text, StyleSheet, View, Image, Dimensions } from 'react-native';
+import { FlatList, Pressable } from 'react-native';
+import { Text, StyleSheet, Image, Dimensions } from 'react-native';
 import products from '../data/products';
 
-const ProductScreen = () => {
+const ProductScreen = ({ navigation }) => {
   const { width } = Dimensions.get('window');
   const itemWidth = (width - 20) / 2; // Subtracting 20 from width to account for margins
 
@@ -11,10 +11,13 @@ const ProductScreen = () => {
     <FlatList
       data={products}
       renderItem={({ item }) => (
-        <View style={[styles.container, { width: itemWidth }]}>
+        <Pressable
+          onPress={() => navigation.navigate('Product Details')}
+          style={[styles.container, { width: itemWidth }]}
+        >
           <Image source={{ uri: item.image }} style={styles.image} />
           <Text style={styles.title}>{item.name}</Text>
-        </View>
+        </Pressable>
       )}
       //   keyExtractor={(item) => item.id.toString()}
       numColumns={2}

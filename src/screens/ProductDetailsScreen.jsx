@@ -14,7 +14,7 @@ import products from '../data/products';
 
 const product = products[0];
 
-const ProductDetailsScreen = () => {
+const ProductDetailsScreen = ({ navigation }) => {
   const renderItem = ({ item }) => {
     const screenWidth = Dimensions.get('window').width;
     return (
@@ -49,7 +49,7 @@ const ProductDetailsScreen = () => {
         </ScrollView>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => console.log('Button pressed!')}
+          onPress={() => navigation.navigate('Shopping Cart')}
           activeOpacity={0.7}
         >
           <Text style={styles.buttonText}>Add {product.name} to Cart</Text>
