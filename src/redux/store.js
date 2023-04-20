@@ -3,6 +3,6 @@ import ItemSlice from './slice/ItemSlice';
 
 export const store = configureStore({
   reducer: {
-    products: ItemSlice,
-  },
+    products: ItemSlice
+  }
 });
