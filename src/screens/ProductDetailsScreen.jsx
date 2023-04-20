@@ -10,11 +10,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import products from '../data/products';
-
-const product = products[0];
+import { useSelector } from 'react-redux';
 
 const ProductDetailsScreen = ({ navigation }) => {
+  const selectedProduct = useSelector(
+    (state) => state.products.selectedProduct
+  );
+
   const renderItem = ({ item }) => {
     const screenWidth = Dimensions.get('window').width;
     return (
@@ -34,7 +36,7 @@ const ProductDetailsScreen = ({ navigation }) => {
       <View style={styles.container}>
         <ScrollView>
           <FlatList
-            data={product.images}
+            data={selectedProduct.images}
             renderItem={renderItem}
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -42,9 +44,11 @@ const ProductDetailsScreen = ({ navigation }) => {
             style={{ backgroundColor: '#f6f6f6' }}
           />
           <View style={styles.textView}>
-            <Text style={styles.title}>{product.name}</Text>
-            <Text style={styles.price}>${product.price.toFixed(2)}</Text>
-            <Text style={styles.details}>{product.description}</Text>
+            <Text style={styles.title}>{selectedProduct.name}</Text>
+            <Text style={styles.price}>
+              ${selectedProduct.price.toFixed(2)}
+            </Text>
+            <Text style={styles.details}>{selectedProduct.description}</Text>
           </View>
         </ScrollView>
         <TouchableOpacity
@@ -52,7 +56,9 @@ const ProductDetailsScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('Shopping Cart')}
           activeOpacity={0.7}
         >
-          <Text style={styles.buttonText}>Add {product.name} to Cart</Text>
+          <Text style={styles.buttonText}>
+            Add {selectedProduct.name} to Cart
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

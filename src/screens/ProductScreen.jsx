@@ -1,9 +1,13 @@
 import React from 'react';
 import { FlatList, Pressable } from 'react-native';
 import { Text, StyleSheet, Image, Dimensions } from 'react-native';
-import products from '../data/products';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelectedProduct } from '../redux/slice/ItemSlice';
 
 const ProductScreen = ({ navigation }) => {
+  const products = useSelector((state) => state.products.items);
+  const dispatch = useDispatch();
+
   const { width } = Dimensions.get('window');
   const itemWidth = (width - 20) / 2; // Subtracting 20 from width to account for margins
 
@@ -12,14 +16,16 @@ const ProductScreen = ({ navigation }) => {
       data={products}
       renderItem={({ item }) => (
         <Pressable
-          onPress={() => navigation.navigate('Product Details')}
+          onPress={() => {
+            dispatch(setSelectedProduct(item.id));
+            navigation.navigate('Product Details');
+          }}
           style={[styles.container, { width: itemWidth }]}
         >
           <Image source={{ uri: item.image }} style={styles.image} />
           <Text style={styles.title}>{item.name}</Text>
         </Pressable>
       )}
-      //   keyExtractor={(item) => item.id.toString()}
       numColumns={2}
       contentContainerStyle={styles.list}
     />
